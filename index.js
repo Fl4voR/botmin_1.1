@@ -5,16 +5,7 @@ const bot = new Bot(process.env.BOT_API_KEY)
 
 bot.use(hydrate());
 
-
-
-// bot.api.setMyCommands([{
-//     command: 'start', description:'запуск бота'
-    
-// }
-// ])
-
-
-
+// 21.03.24
 
 const linkArray =  [
     'https://ibb.co/8mCPz7q',
@@ -73,7 +64,7 @@ bot.command('start', async (ctx) => {
     if (ctx.callbackQuery.data === 'GetRegister') {
         const inlineKeyboard = new InlineKeyboard().text('ПРОВЕРИТЬ ID', 'CheckId');
         await ctx.replyWithPhoto('https://postimg.cc/BjdJzX6S');
-        await ctx.reply('1. Для начала зарегистрируйтесь по ссылке на сайте 1WIN (CLICK) (https://1wgtqa.life/v3/landing-page/casino#uihs)\n2. После успешной регистрации cкопируйте ваш айди на сайте (Вкладка \'пополнение\' и в правом верхнем углу будет ваш ID).\n3. После нажмите на кнопку "проверить id" и напишите свой id', {
+        await ctx.reply('1. Для начала зарегистрируйтесь по ссылке на сайте 1WIN (CLICK) (https://1wrcna.life/v3/landing-page/casino#uihs)\n2. После успешной регистрации cкопируйте ваш айди на сайте (Вкладка \'пополнение\' и в правом верхнем углу будет ваш ID).\n3. После нажмите на кнопку "проверить id" и напишите свой id', {
             reply_markup: inlineKeyboard
         });
     }
@@ -86,7 +77,7 @@ bot.command('start', async (ctx) => {
         .text('ПОЛУЧИТЬ СИГНАЛ','GetSignalGlav');
     
         const randomIndex = Math.floor(Math.random() * linkArray.length);
-        // Get the random link from the array
+        
         const randomLink = linkArray[randomIndex];
         await ctx.replyWithPhoto(randomLink, {
           reply_markup: SignalKeyboard
@@ -94,22 +85,19 @@ bot.command('start', async (ctx) => {
       }
 
 
-
-
-
       if (ctx.callbackQuery.data === 'GetSignalGlav') {
         const SignalKeyboard = new InlineKeyboard().text('ПОЛУЧИТЬ СИГНАЛ', 'GetSignalGlav');
         
-        // Удаление предыдущего сообщения
+        
         if (ctx.msg.message_id) {
             await ctx.api.deleteMessage(ctx.msg.chat.id, ctx.msg.message_id);
         }
     
-        // Имитация загрузки в процентах с отображением прогресса
+        
         let statusMessage = await ctx.reply(`Загрузка: 1%`);
     
         for (let i = 2; i <= 100; i += 10) {
-            // Генерация случайного значения прогресса между i-10% и i%
+            
             const randomProgress = Math.floor(Math.random() * 11 + (i > 10 ? i - 10 : 0));
             
             await ctx.api.sendChatAction(ctx.msg.chat.id, 'upload_photo', { progress: randomProgress });
@@ -121,29 +109,17 @@ bot.command('start', async (ctx) => {
 
          setTimeout(() => statusMessage.delete().catch(() => {}), 500);
 
-    
-        // Удаление сообщения "Done!" через 2 секунды
-    
-    
-        // Отображение прогресса загрузки в чате с отправкой сообщения с фото
+
         const randomIndex = Math.floor(Math.random() * linkArray.length);
         const randomLink = linkArray[randomIndex];
     
-        // Отправка нового сообщения с фото и клавиатурой
+
         const newStatusMessage = await ctx.replyWithPhoto(randomLink, {
             reply_markup: SignalKeyboard
         });
     
-
-    
-        // Остановка имитации загрузки
         await ctx.api.sendChatAction(ctx.msg.chat.id, 'typing');
     }
-
-
-
-
-
 
 
 
@@ -169,27 +145,6 @@ bot.command('start', async (ctx) => {
         }
     }
   });
-
-
-
-
-
-
-
-
-
-
-//   bot.on("message", async (ctx) => {
-//     const statusMessage = await ctx.reply("Processing");
-//     // await doWork(ctx.msg.photo); // some long image processing
-//     await statusMessage.editText("Done!"); // so easy!
-//     setTimeout(() => statusMessage.delete().catch(() => {}), 3000);
-//   });
-
-
-
-
-
 
 
   bot.catch((err) => {
