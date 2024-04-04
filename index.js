@@ -44,7 +44,7 @@ const linkArray =  [
   
 
 
-fgds
+
 
 
 
@@ -64,7 +64,7 @@ bot.command('start', async (ctx) => {
     if (ctx.callbackQuery.data === 'GetRegister') {
         const inlineKeyboard = new InlineKeyboard().text('ПРОВЕРИТЬ ID', 'CheckId');
         await ctx.replyWithPhoto('https://postimg.cc/BjdJzX6S');
-        await ctx.reply('1. Для начала зарегистрируйтесь по ссылке на сайте 1WIN (CLICK) (https://1wrcna.life/v3/landing-page/casino#uihs)\n2. После успешной регистрации cкопируйте ваш айди на сайте (Вкладка \'пополнение\' и в правом верхнем углу будет ваш ID).\n3. После нажмите на кнопку "проверить id" и напишите свой id', {
+        await ctx.reply('1. Для начала зарегистрируйтесь по ссылке на сайте 1WIN (CLICK) (https://1wmakv.life/v3/landing-page/casino#uihs)\n2. После успешной регистрации cкопируйте ваш айди на сайте (Вкладка \'пополнение\' и в правом верхнем углу будет ваш ID).\n3. После нажмите на кнопку "проверить id" и напишите свой id', {
             reply_markup: inlineKeyboard
         });
     }
